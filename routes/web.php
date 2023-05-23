@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::get('/', function () {
 Route::get('/form', function () {
     return view('form');
 });
+Route::get('/biodata', [FormController::class, 'daftar']);
+Route::post('/hasil', [FormController::class, 'hasil']);
