@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,8 @@ Route::get('/form', function () {
 });
 Route::get('/biodata', [FormController::class, 'daftar']);
 Route::post('/hasil', [FormController::class, 'hasil']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
+});
