@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::get('/form', function () {
 });
 Route::get('/biodata', [FormController::class, 'daftar']);
 Route::post('/hasil', [FormController::class, 'hasil']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
