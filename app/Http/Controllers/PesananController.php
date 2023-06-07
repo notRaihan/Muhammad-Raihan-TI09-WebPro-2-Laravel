@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
-use App\Models\Produk;
 
-class ProdukController extends Controller
+class PesananController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $produk = Produk::join('kategori_produk', 'produk.kategori_produk', '=', 'kategori_produk.id')
-        ->select('produk.*', 'kategori_produk.nama as kategori')
-        ->get();
+        //
+        $pesanan = Pesanan::join('produk', 'pesanan.produk_id', '=', 'produk.id')
+        ->select('pesanan.*', 'produk.nama as produk')->get();
 
-        return view('admin.database.produk.index', compact('produk'));
+        return view('admin.database.pesanan.index', compact('pesanan'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Pesanan $pesanan)
     {
         //
     }
@@ -46,7 +46,7 @@ class ProdukController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pesanan $pesanan)
     {
         //
     }
@@ -54,7 +54,7 @@ class ProdukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pesanan $pesanan)
     {
         //
     }
@@ -62,7 +62,7 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pesanan $pesanan)
     {
         //
     }

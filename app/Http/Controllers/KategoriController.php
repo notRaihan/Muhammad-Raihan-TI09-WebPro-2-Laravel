@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriProduk;
 use Illuminate\Http\Request;
-use App\Models\Produk;
 
-class ProdukController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $produk = Produk::join('kategori_produk', 'produk.kategori_produk', '=', 'kategori_produk.id')
-        ->select('produk.*', 'kategori_produk.nama as kategori')
-        ->get();
+        $kategori = KategoriProduk::all();
 
-        return view('admin.database.produk.index', compact('produk'));
+        return view('admin.database.kategori.index', compact('kategori'));
     }
 
     /**
