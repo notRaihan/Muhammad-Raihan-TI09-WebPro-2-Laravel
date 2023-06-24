@@ -8,6 +8,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PelangganController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +30,14 @@ Route::get('/form', function () {
 Route::get('/biodata', [FormController::class, 'daftar']);
 Route::post('/hasil', [FormController::class, 'hasil']);
 
+Route::group(['middleware' => ['auth','role:admin-manager']], function(){
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
     Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan');
+
+    Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
+    Route::get('/produk/create', [ProdukController::class, 'create'])->name('produk.create');
 
 
     Route::prefix('pelanggan')->group(function(){
@@ -47,5 +51,13 @@ Route::prefix('admin')->group(function () {
     });
     
 });
-
+});
 Route::get('/home', [FrontController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/after_register', function(){
+    return view('after_register');
+});
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
