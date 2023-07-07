@@ -19,8 +19,12 @@ class Produk extends Model
         'deskripsi', 
         'kategori_produk'
     ];
-    public function kategori()
-    {
+    public function kategori() {
         return $this->belongsTo(KategoriProduk::class);
+    }
+    public function getAllData () {
+        return Produk::join('kategori_produk', 'produk.kategori_produk', '=', 'kategori_produk.id')
+        ->select('produk.*', 'kategori_produk.nama as kategori')
+        ->get();
     }
 }

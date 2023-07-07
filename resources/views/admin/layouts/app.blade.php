@@ -4,7 +4,7 @@
     <main>
         @yield('content')
     </main>
-    @yield('footer')
+    <x-admin.footer />
 </div>
 
 @include('admin.layouts.footer')

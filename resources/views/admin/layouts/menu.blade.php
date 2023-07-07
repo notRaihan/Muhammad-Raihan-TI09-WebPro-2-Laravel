@@ -51,6 +51,7 @@
                             <a class="nav-link" href="{{ url('admin/kategori') }}">Kategori Produk</a>
                             <a class="nav-link" href="{{ url('admin/produk') }}">Produk</a>
                             <a class="nav-link" href="{{ url('admin/pesanan') }}">Pesanan</a>
+                            <a class="nav-link" href="{{ url('admin/pelanggan') }}">Pelanggan</a>
                         </nav>
                     </div>
                 </div>
